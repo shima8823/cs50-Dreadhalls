@@ -21,6 +21,9 @@ public class LevelGenerator : MonoBehaviour {
 
 	public int mazeSize;
 
+	// number of pitfall
+	public int pitfall = 5;
+
 	// spawns at the end of the maze generation
 	public GameObject pickup;
 
@@ -38,6 +41,7 @@ public class LevelGenerator : MonoBehaviour {
 
 		// initialize map 2D array
 		mapData = GenerateMazeData();
+		int pitfallCount = 0;
 
 		// create actual maze blocks from maze boolean data
 		for (int z = 0; z < mazeSize; z++) {
@@ -53,12 +57,23 @@ public class LevelGenerator : MonoBehaviour {
 						new Vector3(x, 1, z), Quaternion.identity
 					);
 
+                    CreateChildPrefab(floorPrefab, floorParent, x, 0, z);
 					// flag as placed so we never consider placing again
 					characterPlaced = true;
+                } else {
+					//create a pitfall in random
+					if (pitfallCount <= pitfall && Random.Range(0, tilesToRemove) < 6)
+					{
+						print("z " + z + ", x " + x);
+						pitfallCount++;
+					}
+					else
+					{
+						// create floor and ceiling
+						CreateChildPrefab(floorPrefab, floorParent, x, 0, z);
+					}
 				}
 
-				// create floor and ceiling
-				CreateChildPrefab(floorPrefab, floorParent, x, 0, z);
 
 				if (generateRoof) {
 					CreateChildPrefab(ceilingPrefab, wallsParent, x, 4, z);
