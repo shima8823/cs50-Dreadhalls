@@ -278,7 +278,7 @@ MonoBehaviour:
   characterController: {fileID: 1286802624}
   floorParent: {fileID: 328187320}
   wallsParent: {fileID: 1229837569}
-  generateRoof: 0
+  generateRoof: 1
   tilesToRemove: 350
   mazeSize: 30
   pitfall: 5
