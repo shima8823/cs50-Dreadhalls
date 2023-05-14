@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DontDestroy : MonoBehaviour {
 
@@ -12,7 +13,9 @@ public class DontDestroy : MonoBehaviour {
     // get an additional set of sounds with every scene reload, layering on the music
     // track indefinitely
     void Awake() {
-		if (instance == null) {
+        AudioSource bgmSource = GameObject.Find("WhisperSource").GetComponent<AudioSource>();
+        bgmSource.Play();
+        if (instance == null) {
 			instance = this;
 			DontDestroyOnLoad(gameObject);
 		} else if (instance != this) {
