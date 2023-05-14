@@ -14,7 +14,9 @@ public class GrabPickups : MonoBehaviour {
 	void OnControllerColliderHit(ControllerColliderHit hit) {
 		if (hit.gameObject.tag == "Pickup") {
 			pickupSoundSource.Play();
-			SceneManager.LoadScene("Play");
+            DontDestroy.instance.dungeonFloor++;
+
+            SceneManager.LoadScene("Play");
 		}
 	}
 }

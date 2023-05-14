@@ -6,11 +6,12 @@ public class DontDestroy : MonoBehaviour {
 
 	// make this static so it's visible across all instances
 	public static DontDestroy instance = null;
+	public int dungeonFloor = 1;
 
-	// singleton pattern; make sure only one of these exists at one time, else we will
-	// get an additional set of sounds with every scene reload, layering on the music
-	// track indefinitely
-	void Awake() {
+    // singleton pattern; make sure only one of these exists at one time, else we will
+    // get an additional set of sounds with every scene reload, layering on the music
+    // track indefinitely
+    void Awake() {
 		if (instance == null) {
 			instance = this;
 			DontDestroyOnLoad(gameObject);
